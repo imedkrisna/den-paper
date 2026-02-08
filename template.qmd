@@ -50,7 +50,7 @@ abstract: |
   brief summary of your interpretations and conclusions.
 
 # Bibliography file
-bibliography: bibliography.bib
+bibliography: ref.bib
 ---
 
 # User Guide for This Template
