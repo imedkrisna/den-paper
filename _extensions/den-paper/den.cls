@@ -608,10 +608,14 @@
   \fi
   \newpage\vspace*{\dimexpr-\headsep-\headheight\relax}
   \parbox[b]{\dimexpr\textwidth-20mm\relax}{
-    \footnotesize{\journalnamefont\cup@journal@name\ No.\ {\volumefont\cup@vol}}
-
+    \footnotesize{\journalnamefont\cup@journal@name}
     \ifx \cup@layout \cup@layout@publish
-      \cup@publd
+      (\cup@year), Vol.{\volumefont\cup@vol}
+    \fi
+
+    % \par doi:{\cup@doi}} \hfill\includegraphics[width=20mm]{extra/den-logo}\par
+    \ifx \cup@layout \cup@layout@publish
+      doi:{\cup@doi}
     \else
       ~
     \fi
@@ -621,23 +625,23 @@
 
   \vspace*{\baselineskip}
   {
-    % Removed manuscript type display
-    \ifx \cup@manuscript \cup@manuscript@proceedings
-      \sffamily\bfseries\color{structure@color}
-      \emph{\cup@conference}
-      \par
-    \else
-      \ifx \cup@manuscript \cup@manuscript@poster
-        \sffamily\bfseries\color{structure@color}
-        \emph{\cup@conference}
-        \par
+    \sffamily\bfseries\color{structure@color}
+    \MakeUppercase{\convertchar{\cup@manuscript}{-}{ }}
+    {
+      \ifx \cup@manuscript \cup@manuscript@proceedings
+        | \emph{\cup@conference}
+      \else
+        \ifx \cup@manuscript \cup@manuscript@poster
+          | \emph{\cup@conference}
+        \fi
       \fi
-    \fi
-    \ifx \cup@layout \cup@layout@preprint
-      \sffamily\bfseries\color{structure@color}
-      (\emph{Pre-print})
-      \par
-    \fi
+    }
+    {
+      \ifx \cup@layout \cup@layout@preprint
+        (\emph{Pre-print})
+      \fi
+    }
+    \par
   }
 
 
@@ -686,9 +690,14 @@
     {%
       \datesize
       \datefont
-      % Removed dates, editor, and reviewers display
-      \ifx \cup@manuscript \cup@manuscript@poster
-        \emph{(This poster paper is not peer reviewed.)} \\
+      \ifcup@dates
+        \ifx \cup@manuscript \cup@manuscript@poster
+          \emph{(This poster paper is not peer reviewed.)} \\
+        \else
+          (Received: \cup@recvd; Revised: \cup@revd; Accepted: \cup@accptd; Published: \cup@publd) \\
+          (Editor: \cup@editor; Reviewers: \cup@reviewers) \\
+          \vspace*{\cup@space@post@date}%
+        \fi
       \fi
       \ifcup@copyright
         \bgroup\let\thefootnote\relax
@@ -1294,7 +1303,7 @@
   {}{}
 }
 
-\def\cup@journal@name{DEN Working Paper}
+\def\cup@journal@name{Data Engineering Network Journal}
 
 \geometry{
   b5paper,
