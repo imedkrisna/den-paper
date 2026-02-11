@@ -126,6 +126,19 @@ $for(header-includes)$
 $header-includes$
 $endfor$
 
+% Source note environment for figure attributions (right-aligned, compact)
+\newenvironment{source}{%
+  \vspace{-1em}%
+  \begin{flushright}\scriptsize\itshape
+}{%
+  \end{flushright}%
+}
+
+% Allow LaTeX more flexibility in line breaking to prevent overflow
+% (needed for Indonesian/non-English text on narrow B5 paper)
+\tolerance=1000
+\emergencystretch=1.5em
+
 \begin{document}
 
 $if(abstract)$
