@@ -40,6 +40,7 @@ abstract: |
   brief summary of your interpretations and conclusions.
 
 # Bibliography file
+lang: id
 bibliography: ref.bib
 csl: csl.csl
 citation: true
