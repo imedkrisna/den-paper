@@ -1376,7 +1376,9 @@
 % \RequirePackage[authordate,natbib]{biblatex-chicago}
 % \renewcommand*{\bibfont}{\small}
 
-\RequirePackage[backend=biber,style=numeric,maxbibnames=10,sorting=none]{biblatex}
+% Bibliography/citations are handled by Pandoc citeproc + CSL in this template.
+% Keep biblatex disabled to avoid overriding CSL style and forcing biber.
+% \RequirePackage[backend=biber,style=numeric,maxbibnames=10,sorting=none]{biblatex}
 
 \RequirePackage{booktabs}
 \RequirePackage{longtable}  % Required for Quarto tables
